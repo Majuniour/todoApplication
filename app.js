@@ -11,7 +11,7 @@ var mongoose = require('mongoose');         // mongoose for mongodb
 var morgan = require('morgan');             // log requests to the console (express)
 var bodyParser = require('body-parser');    // pull information from HTML POST (express)
 var methodOverride = require('method-override'); // simulate DELETE and PUT (express)
-var connection_string = require('./config/database');
+var connection_string = "mongodb://localhost:27017/mydb";
 
 
 if (process.env.MONGODB_URI) {
@@ -62,9 +62,16 @@ app.use(function(err, req, res, next) {
 });
 
 
-app.listen(process.env.PORT || 3000);
-console.log("App listening on port 3000");
+app.set('ipaddr', process.env.IP || "0.0.0.0");
+app.set('port', process.env.PORT || "3000");
 
+
+
+
+	var server = app.listen(app.get('port'), app.get('ipaddr'), function () {
+		console.log('Express server listening on port http://' + app.get('ipaddr') + ':' + app.get('port'));
+  });
+  
 app.get('*', function(req, res) {
   res.sendfile('./public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
 });
