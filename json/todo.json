@@ -1,0 +1,22 @@
+[{
+    "taskID": 1,
+    "taskName": "Meeting with the Director",
+    "taskDescription": "Project Review",
+    "time": "12h00",
+    "date": "12/05/18"
+},
+{
+    "taskID": 2,
+    "taskName": "Testing",
+    "taskDescription": "Project Testing",
+    "time": "09h00",
+    "date": "13/05/18"
+},
+{
+    "taskID": 3,
+    "taskName": "Briefing",
+    "taskDescription": "Briefing with the Team",
+    "time": "13h00",
+    "date": "13/05/18"
+}
+]
