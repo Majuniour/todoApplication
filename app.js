@@ -5,14 +5,18 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 
+
 var app = express();                              // create our app w/ express
 var mongoose = require('mongoose');         // mongoose for mongodb
 var morgan = require('morgan');             // log requests to the console (express)
 var bodyParser = require('body-parser');    // pull information from HTML POST (express)
 var methodOverride = require('method-override'); // simulate DELETE and PUT (express)
-var database = require('./config/database'); 
+var connection_string = require('./config/database');
 
 
+if (process.env.MONGODB_URI) {
+	connection_string = process.env.MONGODB_URI;
+}
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -58,7 +62,7 @@ app.use(function(err, req, res, next) {
 });
 
 
-app.listen(3000);
+app.listen(process.env.PORT || 3000);
 console.log("App listening on port 3000");
 
 app.get('*', function(req, res) {
