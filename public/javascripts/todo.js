@@ -1,12 +1,15 @@
 var todoApp = angular.module('todoApp', ['ui.router'])
     .controller('mainController',["$scope", "$http", "$stateParams","$state", "$window", function($scope, $http, $stateParams, $state, $window) {
     $scope.formData = {};
+
     //$scope.stateParams = $stateParams;
    // console.log("State Params", $scope.stateParams, $state);
     // when landing on the page, get all todos and show them
     $http.get('/api/todos/get_todos')
         .success(function(data) {
             $scope.todos = data;
+            $scope.formData.todos = data;
+            console.log("$scope.formData.todos",  $scope.formData.todos);
             console.log(data);
         })
         .error(function(data) {
@@ -42,11 +45,12 @@ var todoApp = angular.module('todoApp', ['ui.router'])
     };
 
     // update a todo
-    $scope.updateTodo = function (id,name){
+    $scope.updateTodo = function (id){
         var data = id;
-        $scope.formData.name = name;
+        console.log("Data", data);
         $http.put('/api/todos/update_todo/' + data)
         .success(function(data){
+            $scope.formData = {}; 
             console.log(data)
             $scope.todos = data;
         })

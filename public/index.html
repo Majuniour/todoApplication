@@ -36,18 +36,18 @@
             <div class="col-sm-4 col-sm-offset-4">
 
                 <!-- LOOP OVER THE TODOS IN $scope.todos -->
-                <div class="checkbox" ng-repeat="todo in todos">
+                <div ng-repeat="todo in todos">
                     <label>
-                      <h3>{{ todo.name }} </h3> <br>
+                        <input type="checkbox" ng-model="todo._id">
+                      <h3>{{ $index + 1 }} {{ todo.name }} </h3> <br>
                       <b>{{ todo.description }}</b>  - {{todo.date | date:'medium'}}   
                     
-                       
-                        <a href="" ng-click="deleteTodo(todo._id)">Delete</a>
-
-
-
-                        <a href="" ng-click="updateTodo(todo._id,name)">Update</a>
+                     
+                        
+                      <a href="" ng-click="deleteTodo(todo._id)">Delete</a>
                     </label>
+
+    
                 </div>
 
             </div>
