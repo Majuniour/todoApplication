@@ -29,7 +29,7 @@ app.use(bodyParser.json());                                     // parse applica
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
 app.use(methodOverride());
 
-mongoose.connect(connection_string || connection_string.url);     // connect to mongoDB database on modulus.io
+mongoose.connect(connection_string);     // connect to mongoDB database on modulus.io
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
